@@ -15,6 +15,7 @@ const columns = [
 
 const headerWeatherAppStartPage = "Weather forecast for ";
 
+
 //functions
 
 
@@ -36,7 +37,12 @@ const fromFormData = await form.getDataFromForm()
 const{startDate, days, hourFrom, hourTo, city} = fromFormData;
 const {lat, long} = openMeteoConfig.cities[city];
 const temperatures = await openMeteoService.getTemperatures(lat, long, startDate, getEndDate(startDate, days), hourFrom, hourTo);
+
+let headerApElement = fromFormData.city;
+document.getElementById("header-ap-place").innerHTML = headerWeatherAppStartPage + headerApElement;
+
 table.fillData(temperatures);
+
     }
 }
 run();

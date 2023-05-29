@@ -1,6 +1,9 @@
 import openMeteoConfig from './config/service-config.json' assert {type: 'json'};
 import OpenMeteoService from './service/OpenMeteoService.js';
 import DataGrid from './ui/DataGrid.js';
+import WeatherForm from './ui/WeatherForm.js';
+import { getEndDate} from './util/date-functions.js'
+
 
 //constants
 const columns = [
@@ -13,41 +16,30 @@ const columns = [
 const headerWeatherAppStartPage = "Weather forecast for ";
 
 //functions
-function  getISODateStr(date) {
-    return date.toISOString().substring(0,10);
-}
-
-function getEndDate(startDateStr, days){
-    const date = new Date(startDateStr);
-    const endDate = new Date(date.setDate(date.getDate() + days));
-    return getISODateStr(endDate);
-}
-
-const fromFormData = {
-    city: 'Tel Aviv',
-    startDate: getISODateStr(new Date()),
-    days: 1, hourFrom: 12, hourTo: 16
-};
 
 
-let headerApElement = fromFormData.city;
-document.getElementById("header-ap-place").innerHTML = headerWeatherAppStartPage + headerApElement;
 
 
 //objects
+
+const form = new WeatherForm("form-place", 
+Object.keys(openMeteoConfig.cities), openMeteoConfig.maxDays)
 const openMeteoService = new OpenMeteoService(openMeteoConfig.baseUrl);
 
 //let a = 10; let b = 20; [a,b] = [b, a]   destruction array to variables
 
 const table = new DataGrid("table-place", columns);
 
-const latLong = openMeteoConfig.cities[fromFormData.city];
-
-const {lat,long} = latLong;     //destruction
-const{startDate, days, hourFrom, hourTo} = fromFormData;
-
-openMeteoService.getTemperatures(lat, long, startDate, getEndDate(startDate, days), hourFrom, hourTo).
-then(data => table.fillData(data));
+async function run() {
+    while (true) {
+const fromFormData = await form.getDataFromForm()
+const{startDate, days, hourFrom, hourTo, city} = fromFormData;
+const {lat, long} = openMeteoConfig.cities[city];
+const temperatures = await openMeteoService.getTemperatures(lat, long, startDate, getEndDate(startDate, days), hourFrom, hourTo);
+table.fillData(temperatures);
+    }
+}
+run();
     
 
 

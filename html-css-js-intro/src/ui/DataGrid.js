@@ -9,14 +9,13 @@ export default class DataGrid {
     }
 
     fillData(rowsData) {
-        this.#tBodyIdElement.innerHTML = rowsData.map(elem => 
-            `<tr>
-                <td>${elem.date}</td>
-                <td>${elem.time}</td>
-                <td>${elem.temperature}</td>
-                <td>${elem.apparentTemperature}</td>
-             </tr>`).join('');
+        this.#tBodyIdElement.innerHTML = rowsData.map(rd => this.#getRow(rd)).join('');
     }
+
+
+       #getRow(obj) {
+        return `<tr>${this.#keys.map(key => `<td>${obj[key]}</td>`).join('')}</rt>`
+     }
     
     #bildTableHeader(parentId, columnNames) {
         const tableSectionElement = document.getElementById(parentId);

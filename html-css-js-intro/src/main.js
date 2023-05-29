@@ -24,15 +24,14 @@ function getEndDate(startDateStr, days){
 }
 
 const fromFormData = {
-    city: 'Beersheba',
+    city: 'Tel Aviv',
     startDate: getISODateStr(new Date()),
-    days: 0, hourFrom: 10, hourTo: 11
+    days: 1, hourFrom: 12, hourTo: 16
 };
 
 
 let headerApElement = fromFormData.city;
 document.getElementById("header-ap-place").innerHTML = headerWeatherAppStartPage + headerApElement;
-
 
 
 //objects

@@ -1,0 +1,46 @@
+body {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.menu-button {
+  
+  flex-direction: row;
+  margin-right: 1vw;
+  margin-bottom: 3vh;
+  margin-top: 3vh;
+  border-radius: 8%;
+}
+
+
+.active {
+  color: white;
+  background-color: blue;
+}
+
+#spinner {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 180px;
+  left: 300px;
+  
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+table, th, td {
+  border: 1px solid;
+  text-align: center;
+
+}

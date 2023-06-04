@@ -11,20 +11,20 @@ export default class CompanyService {
     constructor() {
         this.#employees = {};
     }
+
     addEmployee(employee) {
         const id = this.#getId();
         this.#employees[id] = {...employee, id};
-        return new Promise(resolve=> setTimeout(() => resolve (this.#employees[id]), 500));
-    }
+        return getPromise(this.#employees[id], 150);
 
+    }
     #getId() {
         let id;
         do {
             id = getRandomInt(minId, maxId);
-        } while(this.#employees[id]);
+        }while(this.#employees[id]);
         return id;
     }
-
     getStatistics(field, interval) {
         let array = Object.values(this.#employees);
         const currentYear = new Date().getFullYear();
@@ -34,19 +34,40 @@ export default class CompanyService {
             field = 'age';
         }
         const statisticsObj = count(array, field, interval);
-        return new Promise(resolve=> setTimeout(()=>resolve(Object.entries(statisticsObj).map(e => {
+        return getPromise(Object.entries(statisticsObj).map(e => {
             const min = e[0] * interval;
             const max = min + interval - 1;
             return {min, max, count: e[1]};
-        })), 500));
-        
-    
+        }), 1000)
     }
     getAllEmployees() {
-        return new Promise(resolve=> setTimeout(()=>resolve(Object.values(this.#employees)), 3000));
-
+        return getPromise(Object.values(this.#employees), 1000)
     }
+
+    delEmplById(id) {
+        return getPromise(delete this.#employees[id], 1000) 
+    }
+
+
+    getEmplById(id) {
+        return getPromise(this.#employees[id], 1000) 
+    }
+
+
+    updEmplById (obj, id) {
+        return getPromise(this.#employees[id] = obj, 1000)
+    
+    
+    }
+    
 }
+function getPromise(state, timeout) {
+    return new Promise(resolve => setTimeout(() => resolve(state), timeout))
+}  
+
+
+
+
 
 
 

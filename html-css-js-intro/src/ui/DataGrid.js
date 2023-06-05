@@ -17,7 +17,7 @@ export default class DataGrid {
         this.#updFromObjFn = updFromObjFn;
        
     }
-    
+
     fillData(rowsData) {
         this.#tBodyElement.innerHTML = rowsData.map((rd, index) => this.#getRow(rd, index)).join('');
         this.#setButtons();
@@ -46,8 +46,11 @@ export default class DataGrid {
             const buttonParent = buttonRemElem.parentNode;
             const delRow = buttonParent.parentNode;
             const id = Array.from(delRow.children)[0].innerText;
+            if (confirm(`Are you sure to remove employee with id ${id}?`)) {
             this.#tBodyElement.removeChild(delRow);
             this.#delFromObjFn(id);
+            }
+            
          }));
 
          arrayOfRows.forEach((__, index) => {

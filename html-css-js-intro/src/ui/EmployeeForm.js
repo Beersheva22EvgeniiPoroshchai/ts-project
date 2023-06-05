@@ -11,7 +11,7 @@ export default class EmployeeForm {
         this.#parentId = parentId;
         this.#configData = config;
         const parentElement = document.getElementById(parentId);
-        this.#dataObj = {}
+        this.#dataObj = {};
         this.#fillForm(parentElement, parentId);
         this.#setElements(parentId);
         setOptionItems(this.#departmentElement, this.#configData.departments, "choose the department");
@@ -94,15 +94,17 @@ export default class EmployeeForm {
     document.getElementById(`${this.#parentId}-department-id`).value = obj.department;
     if (obj.gender == "female") {
         document.getElementById(`${this.#parentId}-female-id`).checked = true;
+        document.getElementById(`${this.#parentId}-male-id`).disabled = true;
+
 
     } else {
         document.getElementById(`${this.#parentId}-male-id`).checked = true;
+        document.getElementById(`${this.#parentId}-female-id`).disabled = true;
+        
     }
 
     }
 }
-
-
 
 
 function setOptionItems(element, options, placeHolder){

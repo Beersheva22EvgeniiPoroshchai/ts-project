@@ -22,7 +22,7 @@ export default class CompanyService {
         let id;
         do {
             id = getRandomInt(minId, maxId);
-        }while(this.#employees[id]);
+        } while (this.#employees[id]);
         return id;
     }
     getStatistics(field, interval) {
@@ -56,8 +56,6 @@ export default class CompanyService {
 
     updEmplById (obj, id) {
         return getPromise(this.#employees[id] = obj, 1000)
-    
-    
     }
     
 }

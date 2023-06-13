@@ -1,0 +1,22 @@
+{
+    "sections_in": [
+    {"title": "Home", "id": "movies-galery"},
+    {"title": "Search", "id": "search-form-place"},
+    {"title": "Sign-in", "id": "signIn-form-place"},
+    {"title": "Sign-up", "id": "signUp-form-place"}
+
+],
+
+"sections_out": [
+    {"title": "Home", "id": "movies-galery"},
+    {"title": "Search", "id": "search-form-place"},
+    {"title": "Sign-out", "id": "signOut-form-place"},
+    {"title": "Watch list", "id": "watch-list-form-place"},
+    {"title": "Favorite list", "id": "favorite-list-form-place"}
+    
+
+]
+
+
+
+}

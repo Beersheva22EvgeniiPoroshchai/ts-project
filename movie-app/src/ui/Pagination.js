@@ -7,10 +7,10 @@ export default class Pagination{
     #additionalFunc;
     
     //#totalPage;
-    #parentID;
+   // #parentID;
 
 
-    constructor(parentElement, callBackFn,){
+    constructor(parentElement, callBackFn,) {
         this.#parentElement = parentElement
         this.#callBackFn = callBackFn;
         this.#interval = 8;
@@ -46,7 +46,7 @@ export default class Pagination{
                 
 
         const res = [];
-            for (let i =startIndex; i<=finishIndex; i++){
+            for (let i = startIndex; i<=finishIndex; i++){
                 res.push(`<a class="page-number">${i}</a>`)
         }
 
@@ -56,8 +56,6 @@ export default class Pagination{
                     <a class="page-number">...${totalPages}</a>
                     <a id = "${this.#parentElement.id}-next-id" class="page-number">>></a>`;
             
-            
-  
-        }
+            }
 
 }

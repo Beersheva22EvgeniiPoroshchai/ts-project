@@ -13,7 +13,6 @@ let curUser;
 let sectForMenu = checkLocalStorage();
 
 
-
 const parentElement =  document.getElementById("movies-galery");
 const childElements = Array.from(parentElement.children);
 
@@ -42,12 +41,7 @@ async function searchByGenreFn(obj)  {
    const listMoviesByFilter = await moviesPersistService.getFilteredMovies(chooseGenreId[0]);
    const totalPagedByFiltered = await mainScreen.buildMainCollection(listMoviesByFilter);
    pagination.addPagination(totalPagedByFiltered,1,moviesPersistService.getFilteredMovies.bind(moviesPersistService,chooseGenreId[0]));
-
-
-
-    }
-
-
+   }
 
 
 function checkLocalStorage() {
@@ -65,9 +59,7 @@ return res;
 async function signUpfn (obj) {
 
     const existsObj = await serviceRegistr.getUserByName(obj.name);
-    // if (obj.name == '' || obj.password == '') {
-    // alert(`You should enter possible username and password!`);
-    // } 
+    
     if (existsObj.length != 0) {
         alert(`User with name ${obj.name} already exists. Please, choose new username`);
     } else {
@@ -82,12 +74,7 @@ async function signUpfn (obj) {
 async function signInFn (obj) {
      
     const existsObjSignIn = await serviceRegistr.userSignIn(obj.name, obj.password);
-   // const namePassSets = Object.values(existsObjSignIn);
-  
-
-//     if (obj.name == '' || obj.password == '') {
-//     alert(`You should enter your username and password!`);
-// } else 
+   
 if (existsObjSignIn.length > 0 ) {
     alert(`Welcome, ${obj.name} to the Cinema City portal`)
     localStorage.setItem("currentUser", JSON.stringify(existsObjSignIn[0]));

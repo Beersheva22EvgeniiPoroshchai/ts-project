@@ -22,7 +22,6 @@ export default class MoviesPersistService {
         return await allMov.json();
     }
 
-
     async getGenres() {
         const urlForGenres = `https://api.themoviedb.org/3/genre/movie/list?api_key=${this.#key}`;
         const genres = await fetch (urlForGenres);

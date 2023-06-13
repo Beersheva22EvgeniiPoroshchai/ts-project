@@ -52,15 +52,7 @@ const modal = document.getElementById("search-close-id");
             searchFormElmn.hidden = true;
   }
 
-
-
 }
-
-
-// #setElements() {
-//     this.#formElmn = document.getElementById("search-form");
-//     this.#genreElement = document.getElementById("select-genres-id")
-// }
 
 
 #setHandler() {

@@ -68,7 +68,5 @@ const modal = document.getElementById("sign-in-close-id");
 
 
 
-
-
 }
 }
